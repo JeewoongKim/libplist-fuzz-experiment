@@ -50,7 +50,7 @@ jobs:
           set -eux
 
           cp "experiment/fuzz/${NEW_TARGET}.cc" "libplist-local/fuzz/${NEW_TARGET}.cc"
-          cp "experiment/fuzz/plist_write.dict" "libplist-local/fuzz/${NEW_TARGET}.dict"
+          cp "experiment/fuzz/${NEW_TARGET}.dict" "libplist-local/fuzz/${NEW_TARGET}.dict"
           cp "experiment/fuzz/${NEW_TARGET}.options" "libplist-local/fuzz/${NEW_TARGET}.options"
 
           echo "===== added files ====="

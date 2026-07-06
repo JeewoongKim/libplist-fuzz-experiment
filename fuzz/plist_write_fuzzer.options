@@ -1,3 +1,3 @@
 [libfuzzer]
 max_len = 4096
-dict = plist_write.dict
+dict = plist_write_fuzzer.dict
