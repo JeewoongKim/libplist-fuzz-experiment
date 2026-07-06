@@ -1,0 +1,89 @@
+# Dictionary for plist_write_fuzzer.
+#
+# The target parses input with plist_from_memory(), so tokens cover the
+# text-based plist formats accepted by libplist: XML, JSON, and OpenStep.
+# Binary plist is represented only by its magic header; deeper binary plist
+# structure is expected to come from seed corpus mutation rather than tokens.
+
+# Binary plist magic
+bplist_magic="bplist00"
+
+# XML plist prolog / document structure
+xml_decl="<?xml"
+xml_doctype="<!DOCTYPE plist"
+xml_plist_open="<plist"
+xml_plist_close="</plist>"
+xml_version="version=\"1.0\""
+
+# XML plist containers
+xml_dict_open="<dict>"
+xml_dict_close="</dict>"
+xml_array_open="<array>"
+xml_array_close="</array>"
+xml_key_open="<key>"
+xml_key_close="</key>"
+
+# XML plist scalar types
+xml_string_open="<string>"
+xml_string_close="</string>"
+xml_integer_open="<integer>"
+xml_integer_close="</integer>"
+xml_real_open="<real>"
+xml_real_close="</real>"
+xml_true="<true/>"
+xml_false="<false/>"
+xml_data_open="<data>"
+xml_data_close="</data>"
+xml_date_open="<date>"
+xml_date_close="</date>"
+
+# Common XML escapes
+xml_amp="&amp;"
+xml_lt="&lt;"
+xml_gt="&gt;"
+xml_quot="&quot;"
+xml_apos="&apos;"
+
+# JSON structural tokens
+json_lbrace="{"
+json_rbrace="}"
+json_lbracket="["
+json_rbracket="]"
+json_colon=":"
+json_comma=","
+json_quote="\""
+
+# JSON literals
+json_true="true"
+json_false="false"
+json_null="null"
+
+# JSON plist-like keys / values
+json_key_uid="\"UID\""
+json_key_data="\"data\""
+json_key_date="\"date\""
+json_key_string="\"string\""
+json_key_array="\"array\""
+json_key_dict="\"dict\""
+
+# OpenStep structural tokens
+ostep_lbrace="{"
+ostep_rbrace="}"
+ostep_lparen="("
+ostep_rparen=")"
+ostep_equal="="
+ostep_semicolon=";"
+ostep_comma=","
+ostep_quote="\""
+ostep_data_open="<"
+ostep_data_close=">"
+
+# Useful scalar fragments
+num_zero="0"
+num_one="1"
+num_minus_one="-1"
+num_large="18446744073709551615"
+real_zero="0.0"
+real_one="1.0"
+date_sample="2024-01-01T00:00:00Z"
+base64_sample="QUJDRA=="
