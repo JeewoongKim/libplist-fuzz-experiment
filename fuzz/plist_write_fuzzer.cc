@@ -1,13 +1,22 @@
-/*
- * plist_write_fuzzer.cc - libFuzzer target for libplist writer API
+ /*
+ * plist_write_fuzzer.cc
+ * plist writer fuzz target for libFuzzer
  *
- * Existing libplist fuzz targets parse input and free the resulting tree.
- * This target complements them by parsing input with plist_from_memory()
- * and serializing the resulting tree with plist_write_to_string().
+ * Copyright (c) 2017 Nikias Bassen All Rights Reserved.
  *
- * The generated output is intentionally not reparsed or compared. The
- * purpose of this target is writer-path memory safety coverage, not
- * semantic round-trip validation.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 #include <plist/plist.h>
@@ -15,7 +24,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-static plist_format_t SelectOutputFormat(uint8_t mode)
+static plist_format_t select_output_format(uint8_t mode)
 {
     switch (mode % 6) {
     case 0: return PLIST_FORMAT_XML;
@@ -27,7 +36,7 @@ static plist_format_t SelectOutputFormat(uint8_t mode)
     }
 }
 
-static plist_write_options_t SelectOptions(uint8_t opt)
+static plist_write_options_t select_options(uint8_t opt)
 {
     unsigned int options = PLIST_OPT_NONE;
 
@@ -82,8 +91,8 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size)
         root,
         &output,
         &output_len,
-        SelectOutputFormat(mode),
-        SelectOptions(opt)
+        select_output_format(mode),
+        select_options(opt)
     );
 
     plist_mem_free(output);
